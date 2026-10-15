@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff5f2">
+  <title>G&amp;R RestoManage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/overrides.css') }}">
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+  <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+</head>
+<body>
+  <section class="login-screen" id="login-screen" hidden>
+    <div class="login-brand">
+      <a class="brand-lockup" href="#dashboard"><span class="brand-mark">G<span>&amp;</span>R</span><span class="brand-name">RestoManage</span></a>
+      <div class="login-copy"><span class="eyebrow">YOUR RESTAURANT, IN RHYTHM</span><h1>Good food.<br>Well run.</h1><p>A thoughtful home for every part of service.</p></div>
+      <span class="login-foot">RESTAURANT OPERATIONS · 2026</span>
+    </div>
+    <form class="login-card" id="login-form">
+      <span class="eyebrow">WELCOME BACK</span><h2>Sign in</h2><p class="muted">Use your staff account to continue.</p>
+      <label for="login-username">Username</label><input id="login-username" name="username" autocomplete="username" required>
+      <label for="login-password">Password</label><input id="login-password" name="password" type="password" autocomplete="current-password" required>
+      <button class="button button-primary login-submit" type="submit">Sign in <i data-lucide="arrow-right"></i></button>
+      <p class="login-error" id="login-error" role="alert"></p>
+    </form>
+  </section>
+
+  <div class="app-shell" id="app-shell" hidden>
+    <aside class="sidebar" id="sidebar">
+      <a class="brand-lockup sidebar-brand" href="#dashboard" aria-label="G&R RestoManage home"><span class="brand-mark">G<span>&amp;</span>R</span><span class="brand-name">RestoManage</span></a>
+      <div class="workspace-label">RESTAURANT</div>
+      <nav class="side-nav" aria-label="Main navigation">
+        <button class="nav-link active" data-view="dashboard"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></button>
+        <button class="nav-link" data-view="pos"><i data-lucide="shopping-bag"></i><span>Point of sale</span></button>
+        <button class="nav-link" data-view="orders"><i data-lucide="receipt-text"></i><span>Orders</span><span class="nav-count" id="open-count">0</span></button>
+        <div class="nav-divider"></div><div class="workspace-label">MANAGEMENT</div>
+        <button class="nav-link" data-view="tables"><i data-lucide="armchair"></i><span>Tables &amp; seating</span></button>
+        <button class="nav-link" data-view="menu"><i data-lucide="book-open"></i><span>Menu</span></button>
+        <button class="nav-link" data-view="customers"><i data-lucide="contact-round"></i><span>Customers</span></button>
+        <div class="nav-divider admin-only"></div><div class="workspace-label admin-only">PEOPLE &amp; FINANCE</div>
+        <button class="nav-link admin-only" data-view="employees"><i data-lucide="users-round"></i><span>Employees</span></button>
+        <button class="nav-link admin-only" data-view="attendance"><i data-lucide="calendar-check"></i><span>Attendance</span></button>
+        <button class="nav-link admin-only" data-view="expenses"><i data-lucide="wallet"></i><span>Expenses</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-note"><span class="live-dot"></span><span>Service is live</span><span class="live-time" id="live-time"></span></div>
+        <div class="profile-card"><span class="avatar" id="user-avatar">GR</span><span class="profile-copy"><strong id="user-name">Team member</strong><small id="user-role">Staff</small></span></div>
+        <button class="logout-link" id="logout-button"><i data-lucide="log-out"></i> Sign out</button>
+      </div>
+    </aside>
+    <div class="mobile-shade" id="mobile-shade"></div>
+    <main class="main-area">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" id="mobile-menu" aria-label="Open navigation"><i data-lucide="menu"></i></button>
+        <div class="breadcrumbs"><span>G&amp;R RestoManage</span><i data-lucide="chevron-right"></i><strong id="breadcrumb-current">Dashboard</strong></div>
+        <div class="topbar-actions">
+          <label class="global-search"><i data-lucide="search"></i><input id="global-search" placeholder="Search this page..." autocomplete="off"><kbd>Ctrl K</kbd></label>
+          <button class="icon-button theme-button" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><i data-lucide="sun-moon"></i></button>
+          <div class="top-user"><span class="avatar avatar-small" id="top-avatar">GR</span><span id="top-user-name">Staff</span></div>
+        </div>
+      </header>
+      <section class="view" id="view" aria-live="polite"></section>
+    </main>
+    <div class="toast-region" id="toast-region" aria-live="polite"></div>
+    <dialog class="modal" id="modal"><div class="modal-shell"><button class="modal-close icon-button" data-action="close-modal" aria-label="Close"><i data-lucide="x"></i></button><div id="modal-content"></div></div></dialog>
+  </div>
+</body>
+</html>
